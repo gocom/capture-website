@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+for f in /app/.cache/puppeteer/chrome/linux-*/chrome-linux64/chrome_sandbox; do
+  cp -f "$f" /usr/local/bin/chrome-devel-sandbox
+  exit 0
+done
