@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-docker-permissions 2> /dev/null
+set -e
+docker-permissions
 
 if [ "$#" -gt 0 ]; then
   if [[ "$1" == "-"* ]] || ! [ "$(command -v "$1" 2> /dev/null)" ]; then

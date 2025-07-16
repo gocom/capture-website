@@ -47,6 +47,9 @@ services:
     image: ghcr.io/gocom/capture-website:0.1.0
     volumes:
       - ./screenshots:/screenshots
+    networks:
+      - proxy
+
 networks:
   proxy:
 ```

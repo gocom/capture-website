@@ -11,5 +11,6 @@ if [ "$(id -u)" -eq 0 ]; then
     usermod --uid "$HOST_UID" "$APP_USER" 2> /dev/null  || true
   fi
 
+  chown -R "$APP_USER:$APP_GROUP" "$APP_DIRECTORY"
   chown -R "$APP_USER:$APP_GROUP" "$SCREENSHOTS_DIRECTORY"
 fi

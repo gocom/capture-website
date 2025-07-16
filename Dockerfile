@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y \
   libxrandr-dev \
   && npm install capture-website-cli puppeteer \
   && puppeteer browsers install chrome \
+  && userdel node \
   && groupadd -g "$APP_GID" "$APP_GROUP" \
   && useradd -m -u "$APP_UID" -g "$APP_GROUP" "$APP_USER" \
   && mkdir -p "$SCREENSHOTS_DIRECTORY" \
