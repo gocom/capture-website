@@ -16,6 +16,10 @@ push:
 run:
 	docker run --volume ./screenshots:/screenshots -it --rm "$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)" "$(DOCKER_IMAGE_COMMAND)"
 
+test:
+	rm -rf screenshots
+	docker run --volume ./screenshots:/screenshots -it --rm "$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)" capture-website https://example.com/ --output=/screenshots/image.png
+
 help:
 	@echo "Manage project"
 	@echo ""

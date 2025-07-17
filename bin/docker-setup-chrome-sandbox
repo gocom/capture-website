@@ -2,7 +2,14 @@
 
 set -e
 
-for f in /app/.cache/puppeteer/chrome/linux-*/chrome-linux64/chrome_sandbox; do
-  cp -f "$f" /usr/local/bin/chrome-devel-sandbox
-  exit 0
-done
+if [ "$CHROME_DEVEL_SANDBOX" ]; then
+  for f in "$PUPPETEER_CACHE_DIRECTORY"/chrome/linux-*/chrome-linux64/chrome_sandbox; do
+    cp -f "$f" "$CHROME_DEVEL_SANDBOX"
+    chown root:root "$CHROME_DEVEL_SANDBOX"
+    chmod 4755 "$CHROME_DEVEL_SANDBOX"
+    exit 0
+  done
+
+  echo "Failed to find Chrome sandbox" >&2
+  exit 1
+fi

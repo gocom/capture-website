@@ -2,15 +2,17 @@ FROM node:22-bookworm-slim
 
 USER root:root
 
+ENV HOST_UID 1000
+ENV HOST_GID 1000
+
 ENV PATH /app/node_modules/.bin:$PATH
 ENV APP_DIRECTORY /app
 ENV SCREENSHOTS_DIRECTORY /screenshots
-ENV HOST_UID 1000
-ENV HOST_GID 1000
 ENV CHROME_DEVEL_SANDBOX /usr/local/bin/chrome-devel-sandbox
+ENV PUPPETEER_CACHE_DIRECTORY /app/.cache/puppeteer
 
-ENV APP_UID 9000
-ENV APP_GID 9000
+ENV APP_UID 1000
+ENV APP_GID 1000
 ENV APP_USER app
 ENV APP_GROUP app
 
@@ -41,7 +43,8 @@ RUN apt-get update && apt-get install -y \
   && groupadd -g "$APP_GID" "$APP_GROUP" \
   && useradd -m -u "$APP_UID" -g "$APP_GROUP" "$APP_USER" \
   && mkdir -p "$SCREENSHOTS_DIRECTORY" \
-  && chmod 777 "$SCREENSHOTS_DIRECTORY" \
+  && chmod -R 777 "$SCREENSHOTS_DIRECTORY" \
+  && chmod -R 777 "$APP_DIRECTORY" \
   && chown -R "$APP_USER:$APP_GROUP" "$APP_DIRECTORY" \
   && chown -R "$APP_USER:$APP_GROUP" "$SCREENSHOTS_DIRECTORY" \
   && chmod +x /usr/local/bin/* \
