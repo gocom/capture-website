@@ -27,7 +27,8 @@ the given command is passed down through the entrypoint to `capture-website`, wh
 user. If the container is started as a root, the `app` user is automatically mapped to the user defined with `HOST_UID`
 environment variable.
 
-❕Note that the image requires `SYS_ADMIN` capability since the container runs a sandboxed browser process inside of
+> [!NOTE]
+> The image requires `SYS_ADMIN` capability since the container runs a sandboxed browser process inside of
 it. The image may work without it on some host systems, but will fail on others.
 
 📝 Example usage
