@@ -1,7 +1,7 @@
 Capture website
 =====
 
-Docker image for capturing screenshots for websites. The container wraps around
+Docker image for capturing screenshots of websites. The container wraps around
 [capture-website](https://github.com/sindresorhus/capture-website) and
 [capture-website-cli](https://github.com/sindresorhus/capture-website-cli).
 

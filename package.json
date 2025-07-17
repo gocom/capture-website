@@ -1,0 +1,29 @@
+{
+  "name": "@gocom/capture-website",
+  "version": "0.1.0",
+  "keywords": [
+    "docker",
+    "capture",
+    "screenshot",
+    "website",
+    "url",
+    "image"
+  ],
+  "author": {
+    "name": "Jukka Svahn",
+    "url": "https://github.com/gocom"
+  },
+  "license": "MIT",
+  "description": "Capture screenshots for websites",
+  "homepage": "https://github.com/gocom/capture-website",
+  "bugs": "https://github.com/gocom/capture-website/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gocom/capture-website.git"
+  },
+  "dependencies": {
+    "capture-website-cli": "^4.0.0",
+    "puppeteer": "^24.14.0"
+  },
+  "private": true
+}

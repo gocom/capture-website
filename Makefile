@@ -1,5 +1,7 @@
-.PHONY: all build help push run
+.PHONY: all build help push run extract update-package-lock
 
+HOST_UID ?= `id -u`
+HOST_GID ?= `id -g`
 DOCKER_IMAGE_NAME ?= ghcr.io/gocom/capture-website
 DOCKER_IMAGE_TAG ?= dev
 DOCKER_IMAGE_PLATFORM ?= linux/amd64
@@ -19,6 +21,11 @@ run:
 test:
 	rm -rf screenshots
 	docker run --volume ./screenshots:/screenshots -it --rm "$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)" capture-website https://example.com/ --output=/screenshots/image.png
+
+update-package-lock:
+	docker run --volume ./screenshots:/screenshots -it --rm "$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)" gosu app:app bash -c 'npm update && cp /app/package.json /screenshots/ && cp /app/package-lock.json /screenshots/'
+	mv screenshots/package.json package.json
+	mv screenshots/package-lock.json package-lock.json
 
 help:
 	@echo "Manage project"
@@ -44,4 +51,10 @@ help:
 	@echo ""
 	@echo "  $$ make run"
 	@echo "  Run the built Docker image"
+	@echo ""
+	@echo "  $$ make test"
+	@echo "  Run some test"
+	@echo ""
+	@echo "  $$ make update-package-lock"
+	@echo "  Update package lock"
 	@echo ""

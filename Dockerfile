@@ -9,7 +9,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV APP_DIRECTORY /app
 ENV SCREENSHOTS_DIRECTORY /screenshots
 ENV CHROME_DEVEL_SANDBOX /usr/local/bin/chrome-devel-sandbox
-ENV PUPPETEER_CACHE_DIRECTORY /app/.cache/puppeteer
+ENV PUPPETEER_CACHE_DIR /app/.cache/puppeteer
 
 ENV APP_UID 1000
 ENV APP_GID 1000
@@ -19,9 +19,16 @@ ENV APP_GROUP app
 WORKDIR /app
 
 COPY ./.puppeteerrc.cjs /app/.puppeteerrc.cjs
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
 COPY ./bin /usr/local/bin
 
 RUN apt-get update && apt-get install -y \
+  fonts-ipafont-gothic \
+  fonts-wqy-zenhei \
+  fonts-thai-tlwg \
+  fonts-kacst \
+  fonts-freefont-ttf \
   gosu \
   libasound2-dev \
   libatk1.0-dev \
@@ -37,7 +44,8 @@ RUN apt-get update && apt-get install -y \
   libxcomposite-dev \
   libxdamage-dev \
   libxrandr-dev \
-  && npm install capture-website-cli puppeteer \
+  libxss1 \
+  && npm ci \
   && puppeteer browsers install chrome \
   && userdel node \
   && groupadd -g "$APP_GID" "$APP_GROUP" \
