@@ -1,5 +1,9 @@
 FROM node:22-bookworm-slim
 
+LABEL org.opencontainers.image.source=https://github.com/gocom/capture-website
+LABEL org.opencontainers.image.description="Capture screenshots of websites"
+LABEL org.opencontainers.image.licenses=MIT
+
 USER root:root
 
 ENV HOST_UID 1000

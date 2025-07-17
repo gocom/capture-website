@@ -14,7 +14,7 @@
     "url": "https://github.com/gocom"
   },
   "license": "MIT",
-  "description": "Capture screenshots for websites",
+  "description": "Capture screenshots of websites",
   "homepage": "https://github.com/gocom/capture-website",
   "bugs": "https://github.com/gocom/capture-website/issues",
   "repository": {
