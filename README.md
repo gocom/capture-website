@@ -1,13 +1,15 @@
 Capture website
 =====
 
+Image: `ghcr.io/gocom/capture-website` | [Container Registry](https://github.com/gocom/capture-website/pkgs/container/capture-website)
+
 Docker image for capturing screenshots of websites. The image wraps around
 [capture-website](https://github.com/sindresorhus/capture-website) and
 [capture-website-cli](https://github.com/sindresorhus/capture-website-cli), which
 internally in uses [Puppeteer](https://github.com/puppeteer/puppeteer) and headless Chrome for taking screenshots
 of websites.
 
-⚡Usage
+⚡ Usage
 -----
 
 The **capture-website** CLI utility, that is wrapped within the container, can be accessed as so:
@@ -16,12 +18,14 @@ The **capture-website** CLI utility, that is wrapped within the container, can b
 $ docker run --cap-add=SYS_ADMIN --rm --volume ./screenshots:/app/screenshots ghcr.io/gocom/capture-website:0.1.0 --help
 ```
 
-The above would print capture-website's CLI help document. Substitute the version number with the version you want.
+The above would print capture-website's CLI help document. Substitute the `0.1.0` with the version tag you want to use.
+It is recommended that you reference specific version or hash. The image follows
+[Semantic Versioning](https://semver.org/).
 
 If the command passed to the container is not an existing executable, starts with `--` or `capture-website`,
-the given command is passed down to `capture-website`, and the process is run as `app:app` user. If the container
-is started as root, the `app` user is automatically mapped to the user defined with `HOST_UID` environment variable,
-if given.
+the given command is passed down through the entrypoint to `capture-website`, where the process is run as `app:app`
+user. If the container is started as a root, the `app` user is automatically mapped to the user defined with `HOST_UID`
+environment variable.
 
 ❕Note that the image requires `SYS_ADMIN` capability since the container runs a sandboxed browser process inside of
 it. The image may work without it on some host systems, but will fail on others.
