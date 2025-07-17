@@ -13,10 +13,10 @@ of websites.
 The **capture-website** CLI utility, that is wrapped within the container, can be accessed as so:
 
 ```shell
-$ docker run --cap-add=SYS_ADMIN --rm --volume ./screenshots:/app/screenshots ghcr.io/gocom/capture-website:master --help
+$ docker run --cap-add=SYS_ADMIN --rm --volume ./screenshots:/app/screenshots ghcr.io/gocom/capture-website:0.1.0 --help
 ```
 
-The above would print capture-website's CLI help document.
+The above would print capture-website's CLI help document. Substitute the version number with the version you want.
 
 If the command passed to the container is not an existing executable, starts with `--` or `capture-website`,
 the given command is passed down to `capture-website`, and the process is run as `app:app` user. If the container
@@ -34,8 +34,10 @@ it. The image may work without it on some host systems, but will fail on others.
 The following would take screenshot of the given URL and save results to the screenshots directory:
 
 ```shell
-$ docker run --rm --volume ./screenshots:/app/screenshots ghcr.io/gocom/capture-website https://example.com/ --output=/screenshots/sreenshot.png
+$ docker run --rm --volume ./screenshots:/app/screenshots ghcr.io/gocom/capture-website:0.1.0 https://example.com/ --output=/screenshots/sreenshot.png
 ```
+
+In the above, substitute the version number tag with the version you want.
 
 ### With Docker Compose
 
