@@ -4,11 +4,11 @@ set -e
 
 if [ "$(id -u)" -eq 0 ]; then
   if ! [ "${HOST_GID:-0}" -eq 0 ]; then
-    groupmod --gid "$HOST_GID" "$APP_GROUP" 2> /dev/null || true
+    groupmod --gid "$HOST_GID" "$APP_GROUP" > /dev/null 2>&1 || true
   fi
 
   if ! [ "${HOST_UID:-0}" -eq 0 ]; then
-    usermod --uid "$HOST_UID" "$APP_USER" 2> /dev/null  || true
+    usermod --uid "$HOST_UID" "$APP_USER" > /dev/null 2>&1  || true
   fi
 
   chown "$APP_USER:$APP_GROUP" "$SCREENSHOTS_DIRECTORY"
